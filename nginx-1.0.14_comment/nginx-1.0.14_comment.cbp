@@ -127,6 +127,13 @@
 		<Unit filename="../html/50x.html" />
 		<Unit filename="../html/index.html" />
 		<Unit filename="../man/nginx.8" />
+		<Unit filename="../objs/Makefile" />
+		<Unit filename="../objs/autoconf.err" />
+		<Unit filename="../objs/ngx_auto_config.h" />
+		<Unit filename="../objs/ngx_auto_headers.h" />
+		<Unit filename="../objs/ngx_modules.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="../src/core/nginx.c">
 			<Option compilerVar="CC" />
 		</Unit>
