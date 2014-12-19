@@ -1,4 +1,4 @@
-#define NGX_CONFIGURE " --prefix=/usr/local/nginx-1.0.14"
+#define NGX_CONFIGURE " --prefix=/usr/local/nginx --without-http_charset_module --without-http_gzip_module --without-http_ssi_module --without-http_userid_module --without-http_access_module --without-http_auth_basic_module --without-http_autoindex_module --without-http_geo_module --without-http_fastcgi_module --without-http_uwsgi_module --without-http_scgi_module --without-http_memcached_module --without-http_limit_zone_module --without-http_empty_gif_module --add-module=./portrait/"
 
 #ifndef NGX_COMPILER
 #define NGX_COMPILER  "gcc 4.8.2 (Ubuntu 4.8.2-19ubuntu1) "
@@ -238,26 +238,6 @@
 #endif
 
 
-#ifndef NGX_HTTP_GZIP
-#define NGX_HTTP_GZIP  1
-#endif
-
-
-#ifndef NGX_HTTP_SSI
-#define NGX_HTTP_SSI  1
-#endif
-
-
-#ifndef NGX_CRYPT
-#define NGX_CRYPT  1
-#endif
-
-
-#ifndef NGX_HTTP_GEO
-#define NGX_HTTP_GEO  1
-#endif
-
-
 #ifndef NGX_HTTP_PROXY
 #define NGX_HTTP_PROXY  1
 #endif
@@ -283,18 +263,8 @@
 #endif
 
 
-#ifndef NGX_HAVE_SHA1
-#define NGX_HAVE_SHA1  1
-#endif
-
-
-#ifndef NGX_HAVE_OPENSSL_SHA1_H
-#define NGX_HAVE_OPENSSL_SHA1_H  1
-#endif
-
-
 #ifndef NGX_PREFIX
-#define NGX_PREFIX  "/usr/local/nginx-1.0.14/"
+#define NGX_PREFIX  "/usr/local/nginx/"
 #endif
 
 

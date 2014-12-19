@@ -1,0 +1,7 @@
+1. download nginx-0.8.54 and extract it, then copy this dir to it.
+2. edit config.nice (prefix, modules ...), cp config.nice ../; cd ..
+3. ./config.nice; make; make install
+4. cd -
+5. cp -R html $PREFIX/html
+6. edit nginx.conf (user, dir, log, connection ..etc.)
+7. now, you can start and fuck it.

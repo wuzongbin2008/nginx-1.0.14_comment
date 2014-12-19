@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="../src/os/unix/ngx_time.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="581" topLine="30" />
+		</Cursor>
+	</File>
+	<File name="../src/os/unix/ngx_socket.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="503" topLine="20" />
+		</Cursor>
+	</File>
+	<File name="../src/core/nginx.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="254" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="../src/os/unix/ngx_files.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="8834" topLine="315" />
+		</Cursor>
+	</File>
+	<File name="../src/core/ngx_crc32.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4412" topLine="105" />
+		</Cursor>
+	</File>
+	<File name="../src/core/ngx_times.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3063" topLine="168" />
+		</Cursor>
+	</File>
+	<File name="../auto/sources" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="59" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="../src/os/unix/ngx_errno.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="44" />
+		</Cursor>
+	</File>
+	<File name="../src/core/ngx_palloc.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1602" topLine="44" />
+		</Cursor>
+	</File>
+	<File name="../src/os/unix/ngx_alloc.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1271" topLine="66" />
+		</Cursor>
+	</File>
+	<File name="../src/core/ngx_connection.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4716" topLine="80" />
+		</Cursor>
+	</File>
+	<File name="../auto/unix" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="12707" topLine="629" />
+		</Cursor>
+	</File>
+	<File name="../src/core/ngx_string.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4735" topLine="115" />
+		</Cursor>
+	</File>
+	<File name="../src/core/ngx_cycle.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2010" topLine="60" />
+		</Cursor>
+	</File>
+	<File name="../src/core/ngx_config.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="285" topLine="66" />
+		</Cursor>
+	</File>
+	<File name="../objs/ngx_auto_config.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2535" topLine="159" />
+		</Cursor>
+	</File>
+	<File name="../src/core/ngx_cycle.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="315" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="1" />
+		</Folding>
+	</File>
+	<File name="../src/os/unix/ngx_daemon.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="313" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="../src/core/ngx_log.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5914" topLine="74" />
+		</Cursor>
+		<Folding>
+			<Collapse line="1" />
+			<Collapse line="14" />
+			<Collapse line="16" />
+			<Collapse line="27" />
+			<Collapse line="34" />
+			<Collapse line="55" />
+			<Collapse line="67" />
+			<Collapse line="86" />
+			<Collapse line="93" />
+			<Collapse line="110" />
+			<Collapse line="128" />
+			<Collapse line="132" />
+			<Collapse line="136" />
+			<Collapse line="147" />
+			<Collapse line="164" />
+			<Collapse line="167" />
+			<Collapse line="177" />
+			<Collapse line="190" />
+			<Collapse line="206" />
+			<Collapse line="220" />
+			<Collapse line="224" />
+			<Collapse line="236" />
+			<Collapse line="237" />
+			<Collapse line="256" />
+			<Collapse line="282" />
+			<Collapse line="352" />
+			<Collapse line="356" />
+			<Collapse line="361" />
+			<Collapse line="371" />
+			<Collapse line="377" />
+			<Collapse line="380" />
+			<Collapse line="381" />
+			<Collapse line="383" />
+			<Collapse line="396" />
+			<Collapse line="397" />
+			<Collapse line="398" />
+			<Collapse line="412" />
+			<Collapse line="419" />
+			<Collapse line="429" />
+			<Collapse line="432" />
+			<Collapse line="438" />
+			<Collapse line="446" />
+			<Collapse line="450" />
+		</Folding>
+	</File>
+	<File name="../src/core/ngx_times.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="266" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="../src/core/ngx_core.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="287" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="../conf/nginx.conf" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="94" />
+		</Cursor>
+	</File>
+	<File name="../src/os/unix/ngx_setproctitle.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="777" topLine="28" />
+		</Cursor>
+	</File>
+	<File name="../src/os/unix/ngx_atomic.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6761" topLine="263" />
+		</Cursor>
+	</File>
+	<File name="../src/os/unix/ngx_process_cycle.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="12392" topLine="153" />
+		</Cursor>
+		<Folding>
+			<Collapse line="1" />
+			<Collapse line="68" />
+			<Collapse line="72" />
+			<Collapse line="110" />
+			<Collapse line="127" />
+			<Collapse line="147" />
+			<Collapse line="151" />
+			<Collapse line="152" />
+			<Collapse line="167" />
+			<Collapse line="184" />
+			<Collapse line="193" />
+			<Collapse line="198" />
+			<Collapse line="200" />
+			<Collapse line="204" />
+			<Collapse line="211" />
+			<Collapse line="224" />
+			<Collapse line="230" />
+			<Collapse line="231" />
+			<Collapse line="243" />
+			<Collapse line="247" />
+			<Collapse line="260" />
+			<Collapse line="276" />
+			<Collapse line="285" />
+			<Collapse line="294" />
+			<Collapse line="302" />
+			<Collapse line="315" />
+			<Collapse line="318" />
+			<Collapse line="323" />
+			<Collapse line="324" />
+			<Collapse line="325" />
+			<Collapse line="332" />
+			<Collapse line="337" />
+			<Collapse line="339" />
+			<Collapse line="340" />
+			<Collapse line="348" />
+			<Collapse line="353" />
+			<Collapse line="361" />
+			<Collapse line="404" />
+			<Collapse line="413" />
+			<Collapse line="415" />
+			<Collapse line="419" />
+			<Collapse line="424" />
+			<Collapse line="439" />
+			<Collapse line="458" />
+			<Collapse line="462" />
+			<Collapse line="468" />
+			<Collapse line="489" />
+			<Collapse line="500" />
+			<Collapse line="523" />
+			<Collapse line="535" />
+			<Collapse line="539" />
+			<Collapse line="546" />
+			<Collapse line="550" />
+			<Collapse line="554" />
+			<Collapse line="555" />
+			<Collapse line="566" />
+			<Collapse line="571" />
+			<Collapse line="580" />
+			<Collapse line="589" />
+			<Collapse line="599" />
+			<Collapse line="611" />
+			<Collapse line="615" />
+			<Collapse line="617" />
+			<Collapse line="626" />
+			<Collapse line="630" />
+			<Collapse line="649" />
+			<Collapse line="654" />
+			<Collapse line="674" />
+			<Collapse line="682" />
+			<Collapse line="690" />
+			<Collapse line="696" />
+			<Collapse line="714" />
+			<Collapse line="721" />
+			<Collapse line="722" />
+			<Collapse line="729" />
+			<Collapse line="752" />
+			<Collapse line="764" />
+			<Collapse line="771" />
+			<Collapse line="774" />
+			<Collapse line="780" />
+			<Collapse line="787" />
+			<Collapse line="791" />
+			<Collapse line="800" />
+			<Collapse line="809" />
+			<Collapse line="812" />
+			<Collapse line="816" />
+			<Collapse line="820" />
+			<Collapse line="828" />
+			<Collapse line="840" />
+			<Collapse line="847" />
+			<Collapse line="853" />
+			<Collapse line="861" />
+			<Collapse line="872" />
+			<Collapse line="880" />
+			<Collapse line="887" />
+			<Collapse line="888" />
+			<Collapse line="894" />
+			<Collapse line="898" />
+			<Collapse line="905" />
+			<Collapse line="909" />
+			<Collapse line="917" />
+			<Collapse line="921" />
+			<Collapse line="929" />
+			<Collapse line="930" />
+			<Collapse line="937" />
+			<Collapse line="943" />
+			<Collapse line="953" />
+			<Collapse line="960" />
+			<Collapse line="972" />
+			<Collapse line="979" />
+			<Collapse line="980" />
+			<Collapse line="990" />
+			<Collapse line="995" />
+			<Collapse line="1000" />
+			<Collapse line="1004" />
+			<Collapse line="1005" />
+			<Collapse line="1010" />
+			<Collapse line="1017" />
+			<Collapse line="1019" />
+			<Collapse line="1023" />
+			<Collapse line="1027" />
+			<Collapse line="1031" />
+			<Collapse line="1037" />
+			<Collapse line="1049" />
+			<Collapse line="1058" />
+			<Collapse line="1068" />
+			<Collapse line="1069" />
+			<Collapse line="1074" />
+			<Collapse line="1076" />
+			<Collapse line="1082" />
+			<Collapse line="1090" />
+			<Collapse line="1096" />
+			<Collapse line="1121" />
+			<Collapse line="1126" />
+			<Collapse line="1135" />
+			<Collapse line="1142" />
+			<Collapse line="1144" />
+			<Collapse line="1152" />
+			<Collapse line="1153" />
+			<Collapse line="1158" />
+			<Collapse line="1165" />
+			<Collapse line="1197" />
+			<Collapse line="1213" />
+			<Collapse line="1217" />
+			<Collapse line="1221" />
+			<Collapse line="1222" />
+			<Collapse line="1223" />
+			<Collapse line="1231" />
+			<Collapse line="1237" />
+			<Collapse line="1256" />
+			<Collapse line="1272" />
+			<Collapse line="1284" />
+			<Collapse line="1289" />
+			<Collapse line="1297" />
+			<Collapse line="1300" />
+			<Collapse line="1304" />
+			<Collapse line="1318" />
+			<Collapse line="1322" />
+			<Collapse line="1326" />
+			<Collapse line="1327" />
+			<Collapse line="1339" />
+			<Collapse line="1365" />
+			<Collapse line="1367" />
+			<Collapse line="1372" />
+			<Collapse line="1385" />
+			<Collapse line="1393" />
+			<Collapse line="1395" />
+			<Collapse line="1404" />
+			<Collapse line="1414" />
+			<Collapse line="1422" />
+			<Collapse line="1424" />
+			<Collapse line="1428" />
+		</Folding>
+	</File>
+	<File name="../src/os/unix/ngx_os.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="968" topLine="27" />
+		</Cursor>
+	</File>
+	<File name="../src/os/unix/ngx_posix_init.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="445" topLine="17" />
+		</Cursor>
+	</File>
+	<File name="../src/core/nginx.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="9886" topLine="137" />
+		</Cursor>
+		<Folding>
+			<Collapse line="1" />
+			<Collapse line="25" />
+			<Collapse line="32" />
+			<Collapse line="34" />
+			<Collapse line="41" />
+			<Collapse line="48" />
+			<Collapse line="55" />
+			<Collapse line="62" />
+			<Collapse line="69" />
+			<Collapse line="76" />
+			<Collapse line="83" />
+			<Collapse line="90" />
+			<Collapse line="97" />
+			<Collapse line="104" />
+			<Collapse line="111" />
+			<Collapse line="118" />
+			<Collapse line="125" />
+			<Collapse line="132" />
+			<Collapse line="141" />
+			<Collapse line="148" />
+			<Collapse line="219" />
+			<Collapse line="222" />
+		</Folding>
+	</File>
+	<File name="../src/os/unix/ngx_process.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2190" topLine="59" />
+		</Cursor>
+	</File>
+	<File name="../src/core/ngx_conf_file.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4033" topLine="95" />
+		</Cursor>
+		<Folding>
+			<Collapse line="1" />
+			<Collapse line="15" />
+			<Collapse line="77" />
+			<Collapse line="88" />
+			<Collapse line="101" />
+		</Folding>
+	</File>
+	<File name="../src/os/unix/ngx_errno.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1435" topLine="35" />
+		</Cursor>
+		<Folding>
+			<Collapse line="11" />
+		</Folding>
+	</File>
+	<File name="../src/core/ngx_palloc.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="329" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="../auto/init" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="91" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="../src/os/unix/ngx_process.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3435" topLine="76" />
+		</Cursor>
+		<Folding>
+			<Collapse line="100" />
+			<Collapse line="115" />
+		</Folding>
+	</File>
+	<File name="../src/core/ngx_array.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="927" topLine="36" />
+		</Cursor>
+	</File>
+	<File name="../auto/os/conf" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="81" />
+		</Cursor>
+	</File>
+</CodeBlocks_layout_file>
