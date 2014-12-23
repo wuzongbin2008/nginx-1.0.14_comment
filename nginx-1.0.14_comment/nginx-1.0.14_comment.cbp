@@ -134,6 +134,19 @@
 		<Unit filename="../objs/ngx_modules.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../portrait/README" />
+		<Unit filename="../portrait/config" />
+		<Unit filename="../portrait/config.nice" />
+		<Unit filename="../portrait/html/50x.html" />
+		<Unit filename="../portrait/html/crossdomain.xml" />
+		<Unit filename="../portrait/html/images/180.gif" />
+		<Unit filename="../portrait/html/images/30.gif" />
+		<Unit filename="../portrait/html/images/50.gif" />
+		<Unit filename="../portrait/html/index.html" />
+		<Unit filename="../portrait/nginx.conf" />
+		<Unit filename="../portrait/ngx_http_portrait_module.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="../src/core/nginx.c">
 			<Option compilerVar="CC" />
 		</Unit>
