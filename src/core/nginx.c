@@ -19,8 +19,7 @@ static char *ngx_core_module_init_conf(ngx_cycle_t *cycle, void *conf);
 static char *ngx_set_user(ngx_conf_t *cf, ngx_command_t *cmd, void *conf);
 static char *ngx_set_env(ngx_conf_t *cf, ngx_command_t *cmd, void *conf);
 static char *ngx_set_priority(ngx_conf_t *cf, ngx_command_t *cmd, void *conf);
-static char *ngx_set_cpu_affinity(ngx_conf_t *cf, ngx_command_t *cmd,
-    void *conf);
+static char *ngx_set_cpu_affinity(ngx_conf_t *cf, ngx_command_t *cmd, void *conf);
 
 
 static ngx_conf_enum_t  ngx_debug_points[] = {
@@ -1065,7 +1064,7 @@ ngx_core_module_init_conf(ngx_cycle_t *cycle, void *conf)
     if (ccf->lock_file.len == 0) {
         ngx_str_set(&ccf->lock_file, NGX_LOCK_PATH);
     }
-    
+
     //初始化lock_file
     if (ngx_conf_full_name(cycle, &ccf->lock_file, 0) != NGX_OK) {
         return NGX_CONF_ERROR;
@@ -1086,7 +1085,7 @@ ngx_core_module_init_conf(ngx_cycle_t *cycle, void *conf)
             ngx_log_error(NGX_LOG_EMERG, cycle->log, 0,
                           "\"lock_file\" could not be changed, ignored");
         }
-        
+
         //初始化ngx_cycle->lock_file
         cycle->lock_file.len = lock_file.len + 1;
         lock_file.len += sizeof(".accept");
