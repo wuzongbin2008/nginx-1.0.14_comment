@@ -283,12 +283,10 @@ ngx_open_listening_sockets(ngx_cycle_t *cycle)
     log = cycle->log;
 
     /* TODO: configurable try number */
-
     for (tries = 5; tries; tries--) {
         failed = 0;
 
         /* for each listening socket */
-
         ls = cycle->listening.elts;
         for (i = 0; i < cycle->listening.nelts; i++) {
 
@@ -352,7 +350,6 @@ ngx_open_listening_sockets(ngx_cycle_t *cycle)
             }
 #endif
             /* TODO: close on exit */
-
             if (!(ngx_event_flags & NGX_USE_AIO_EVENT)) {
                 if (ngx_nonblocking(s) == -1) {
                     ngx_log_error(NGX_LOG_EMERG, log, ngx_socket_errno,
@@ -444,7 +441,6 @@ ngx_open_listening_sockets(ngx_cycle_t *cycle)
         }
 
         /* TODO: delay configurable */
-
         ngx_log_error(NGX_LOG_NOTICE, log, 0,
                       "try again to bind() after 500ms");
 

@@ -156,7 +156,7 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
         return NULL;
     }
 
-    //如果原来结构中共享内存，那么直接统计原来共享内存数，否则默认20
+    //如果原来结构中共享内存，那么直接统计原来共享内存数，否则默认1
     if (old_cycle->shared_memory.part.nelts) {
         n = old_cycle->shared_memory.part.nelts;
         for (part = old_cycle->shared_memory.part.next; part; part = part->next)

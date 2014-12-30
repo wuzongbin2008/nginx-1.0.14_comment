@@ -136,8 +136,7 @@ ngx_master_process_cycle(ngx_cycle_t *cycle)
     ccf = (ngx_core_conf_t *) ngx_get_conf(cycle->conf_ctx, ngx_core_module);
 
     //启动worker,这时已经有了worker进程
-    ngx_start_worker_processes(cycle, ccf->worker_processes,            
-                               NGX_PROCESS_RESPAWN);
+    ngx_start_worker_processes(cycle, ccf->worker_processes, NGX_PROCESS_RESPAWN);
     ngx_start_cache_manager_processes(cycle, 0);  //创建有关cache的子进程
 
     ngx_new_binary = 0;
@@ -148,7 +147,7 @@ ngx_master_process_cycle(ngx_cycle_t *cycle)
     for ( ;; ) {
         //delay用来等待子进程退出的时间，由于我们接受到SIGINT信号后，我们需要先发送信号给子进程，
         //而子进程的退出需要一定的时间，超时时如果子进程已退出，我们父进程就直接退出，
-        //否则发送sigkill信号给子进程(强制退出),然后再退出。  
+        //否则发送sigkill信号给子进程(强制退出),然后再退出。
         if (delay) {
             if (ngx_sigalrm) {
                 sigio = 0;
@@ -180,21 +179,21 @@ ngx_master_process_cycle(ngx_cycle_t *cycle)
 
         ngx_log_debug1(NGX_LOG_DEBUG_EVENT, cycle->log, 0,
                        "wake up, sigio %i", sigio);
-        
+
         //ngx_reap为1，说明有子进程已经退出
         if (ngx_reap) {
             ngx_reap = 0;
             ngx_log_debug0(NGX_LOG_DEBUG_EVENT, cycle->log, 0, "reap children");
 
-            //这个里面处理退出的子进程(有的worker异常退出，这时我们就需要重启这个worker )，如果所有子进程都退出则会返回0.  
+            //这个里面处理退出的子进程(有的worker异常退出，这时我们就需要重启这个worker )，如果所有子进程都退出则会返回0.
             live = ngx_reap_children(cycle);
         }
 
-        //如果没有存活的子进程，并且收到了ngx_terminate或者ngx_quit信号，则master退出。 
+        //如果没有存活的子进程，并且收到了ngx_terminate或者ngx_quit信号，则master退出。
         if (!live && (ngx_terminate || ngx_quit)) {
             ngx_master_process_exit(cycle);
         }
-    
+
         //收到了sigint信号
         if (ngx_terminate) {
             //设置延时
@@ -210,7 +209,7 @@ ngx_master_process_cycle(ngx_cycle_t *cycle)
             sigio = ccf->worker_processes + 2 /* cache processes */;
 
             if (delay > 1000) {
-                //如果超时，则强制杀死worker 
+                //如果超时，则强制杀死worker
                 ngx_signal_worker_processes(cycle, SIGKILL);
             } else {
                 //负责发送sigint给worker，让它退出
@@ -240,7 +239,7 @@ ngx_master_process_cycle(ngx_cycle_t *cycle)
             continue;
         }
 
-        //收到需要reconfig的信号 
+        //收到需要reconfig的信号
         if (ngx_reconfigure) {
             ngx_reconfigure = 0;
 
@@ -255,7 +254,7 @@ ngx_master_process_cycle(ngx_cycle_t *cycle)
             }
 
             ngx_log_error(NGX_LOG_NOTICE, cycle->log, 0, "reconfiguring");
-            
+
             //重新初始化config，并重新启动新的worker
             cycle = ngx_init_cycle(cycle);
             if (cycle == NULL) {
@@ -383,7 +382,7 @@ ngx_start_worker_processes(ngx_cycle_t *cycle, ngx_int_t n, ngx_int_t type)
     for (i = 0; i < n; i++) {
 
         cpu_affinity = ngx_get_cpu_affinity(i);
-        
+
         //fork新进程的具体工作
         ngx_spawn_process(cycle, ngx_worker_process_cycle, NULL,
                           "worker process", type);
@@ -458,10 +457,10 @@ static void
 ngx_pass_open_channel(ngx_cycle_t *cycle, ngx_channel_t *ch)
 {
     ngx_int_t  i;
-    
+
     //遍历整个进程表
     for (i = 0; i < ngx_last_process; i++) {
-        
+
         //遇到非存活的进程就跳过
         if (i == ngx_process_slot
             || ngx_processes[i].pid == -1
@@ -837,7 +836,7 @@ ngx_worker_process_cycle(ngx_cycle_t *cycle, void *data)
         // 这里是worker进程处理事件的核心。
         ngx_process_events_and_timers(cycle);
 
-        //收到shutdown命令（SIGINT信号）则worker直接退出 
+        //收到shutdown命令（SIGINT信号）则worker直接退出
         if (ngx_terminate) {
             ngx_log_error(NGX_LOG_NOTICE, cycle->log, 0, "exiting");
 
@@ -1004,7 +1003,7 @@ ngx_worker_process_init(ngx_cycle_t *cycle, ngx_uint_t priority)
 
     for (i = 0; ngx_modules[i]; i++) {
         if (ngx_modules[i]->init_process) {
-            //进程初始化, 调用每个模块的init_process,用它做模块开发的时候，使用得挺少的 
+            //进程初始化, 调用每个模块的init_process,用它做模块开发的时候，使用得挺少的
             //这里要特别看的是event模块:
             //nginx的event模块包含一个init_process,也就是ngx_event_process_init(ngx_event.c).
             //这个函数就是nginx的驱动器，他初始化事件驱动器，连接池，定时器，以及挂在listen 句柄的回调函数
@@ -1021,7 +1020,7 @@ ngx_worker_process_init(ngx_cycle_t *cycle, ngx_uint_t priority)
             continue;
         }
         //ngx_process_slot是创建worker进程的时候，从master进程复制过来的，此处就是指本worker进程在数组中的索引位置
-        if (n == ngx_process_slot) {  
+        if (n == ngx_process_slot) {
             continue;
         }
 
@@ -1182,7 +1181,7 @@ ngx_channel_handler(ngx_event_t *ev)
             ngx_log_debug3(NGX_LOG_DEBUG_CORE, ev->log, 0,
                            "get channel s:%i pid:%P fd:%d",
                            ch.slot, ch.pid, ch.fd);
-            
+
             //对ngx_processes全局进程表进行赋值
             ngx_processes[ch.slot].pid = ch.pid;
             ngx_processes[ch.slot].channel[0] = ch.fd;
