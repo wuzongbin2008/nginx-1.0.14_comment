@@ -278,6 +278,7 @@ main(int argc, char *const *argv)
 
 	//master pid， 获取当前进程ID
     ngx_pid = ngx_getpid();
+
     // 初始化日志，如打开日志文件
     log = ngx_log_init(ngx_prefix);
     if (log == NULL) {
@@ -293,7 +294,6 @@ main(int argc, char *const *argv)
      * init_cycle->log is required for signal handlers and
      * ngx_process_options()
      */
-
     ngx_memzero(&init_cycle, sizeof(ngx_cycle_t));
     init_cycle.log = log;
     ngx_cycle = &init_cycle;
