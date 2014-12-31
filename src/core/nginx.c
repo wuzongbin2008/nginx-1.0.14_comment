@@ -297,19 +297,23 @@ main(int argc, char *const *argv)
     ngx_memzero(&init_cycle, sizeof(ngx_cycle_t));
     init_cycle.log = log;
     ngx_cycle = &init_cycle;
+
     // 为cycle创建一个1024B的内存池
     init_cycle.pool = ngx_create_pool(1024, log);
     if (init_cycle.pool == NULL) {
         return 1;
     }
+
     // 保存参数到全局变量中
     if (ngx_save_argv(&init_cycle, argc, argv) != NGX_OK) {
         return 1;
     }
+
     // 初始化init_cycle中的一些如: conf_file，prefix，conf_prefix等字段
     if (ngx_process_options(&init_cycle) != NGX_OK) {
         return 1;
     }
+
     // 初始化系统相关变量，如内存页面大小ngx_pagesize,ngx_cacheline_size,最大连接数ngx_max_sockets等
     if (ngx_os_init(log) != NGX_OK) {  // 这个ngx_os_init在不同操作系统调用不同的函数
         return 1;
@@ -322,10 +326,12 @@ main(int argc, char *const *argv)
     if (ngx_crc32_table_init() != NGX_OK) {
         return 1;
     }
+
      // 继承sockets,继承来的socket将会放到init_cycle的listening数组
     if (ngx_add_inherited_sockets(&init_cycle) != NGX_OK) {
         return 1;
     }
+
     // 计算模块个数，并且设置各个模块顺序（索引）
     ngx_max_module = 0;
     for (i = 0; ngx_modules[i]; i++) {  // 这里面的ngx_modules会有非常多的模块，[ngx_core_module,ngx_errlog_module,ngx_conf_moduel]
@@ -351,6 +357,7 @@ main(int argc, char *const *argv)
 
         return 0;
     }
+
     // 检查是否有设置信号处理，如有，进入ngx_signal_process处理
     if (ngx_signal) {
         return ngx_signal_process(cycle, ngx_signal);
