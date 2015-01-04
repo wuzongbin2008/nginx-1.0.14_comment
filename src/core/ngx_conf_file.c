@@ -187,7 +187,6 @@ ngx_conf_parse(ngx_conf_t *cf, ngx_str_t *filename)
          *    NGX_CONF_BLOCK_DONE   the "}" was found
          *    NGX_CONF_FILE_DONE    the configuration file is done
          */
-
         if (rc == NGX_ERROR) {
             goto done;
         }
@@ -232,7 +231,7 @@ ngx_conf_parse(ngx_conf_t *cf, ngx_str_t *filename)
              * the custom handler, i.e., that is used in the http's
              * "types { ... }" directive
              */
-            
+
             //使用handler处理
             rv = (*cf->handler)(cf, NULL, cf->handler_conf);
             if (rv == NGX_CONF_OK) {
@@ -301,7 +300,6 @@ ngx_conf_handler(ngx_conf_t *cf, ngx_int_t last)
     for (i = 0; ngx_modules[i]; i++) {
 
         /* look up the directive in the appropriate modules */
-
         if (ngx_modules[i]->type != NGX_CONF_MODULE
             && ngx_modules[i]->type != cf->module_type)
         {
@@ -327,7 +325,6 @@ ngx_conf_handler(ngx_conf_t *cf, ngx_int_t last)
 
 
             /* is the directive's location right ? */
-
             if (!(cmd->type & cf->cmd_type)) {
                 if (cmd->type & NGX_CONF_MULTI) {
                     multi = 1;
@@ -352,7 +349,6 @@ ngx_conf_handler(ngx_conf_t *cf, ngx_int_t last)
             }
 
             /* is the directive's argument count right ? */
-
             if (!(cmd->type & NGX_CONF_ANY)) {
 
                 if (cmd->type & NGX_CONF_FLAG) {
@@ -384,11 +380,9 @@ ngx_conf_handler(ngx_conf_t *cf, ngx_int_t last)
             }
 
             /* set up the directive's configuration context */
-
             conf = NULL;
-			
-			//最核心的地方，
 
+			//最核心的地方，
             if (cmd->type & NGX_DIRECT_CONF) {
 				//我们还记得最开始ctx是包含了所有core模块的conf(create_conf回调),因此这里取出对应的模块conf.
                 conf = ((void **) cf->ctx)[ngx_modules[i]->index];

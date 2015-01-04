@@ -37,12 +37,12 @@ extern ngx_module_t  ngx_http_not_modified_filter_module;
 ngx_module_t *ngx_modules[] = {
     &ngx_core_module,           //NGX_CORE_MODULE
     &ngx_errlog_module,          //NGX_CORE_MODULE
-    &ngx_conf_module,           //NGX_CONF_MODULE
+    &ngx_conf_module,                                   //NGX_CONF_MODULE
     &ngx_events_module,         //NGX_CORE_MODULE
-    &ngx_event_core_module,     //NGX_EVENT_MODULE
-    &ngx_epoll_module,           //NGX_EVENT_MODULE
+    &ngx_event_core_module,                             //NGX_EVENT_MODULE
+    &ngx_epoll_module,                                   //NGX_EVENT_MODULE
     &ngx_http_module,            //NGX_CORE_MODULE
-    &ngx_http_core_module,       //NGX_HTTP_MODULE
+    &ngx_http_core_module,                               //NGX_HTTP_MODULE
     &ngx_http_log_module,        //NGX_HTTP_MODULE
     &ngx_http_upstream_module,  //NGX_HTTP_MODULE
     &ngx_http_static_module,      //NGX_HTTP_MODULE
