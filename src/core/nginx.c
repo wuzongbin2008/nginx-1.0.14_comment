@@ -334,7 +334,8 @@ main(int argc, char *const *argv)
 
     // 计算模块个数，并且设置各个模块顺序（索引）
     ngx_max_module = 0;
-    for (i = 0; ngx_modules[i]; i++) {  // 这里面的ngx_modules会有非常多的模块，[ngx_core_module,ngx_errlog_module,ngx_conf_moduel]
+    for (i = 0; ngx_modules[i]; i++) {
+        // 这里面的ngx_modules会有非常多的模块，[ngx_core_module,ngx_errlog_module,ngx_conf_moduel]
         ngx_modules[i]->index = ngx_max_module++;
     }
 

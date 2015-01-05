@@ -203,7 +203,6 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
     }
 
     /* on Linux gethostname() silently truncates name that does not fit */
-
     hostname[NGX_MAXHOSTNAMELEN - 1] = '\0';
     cycle->hostname.len = ngx_strlen(hostname);
 
@@ -219,8 +218,10 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
     //创建所有core module的configure.它通过调用每个core module的ngx_xxx_module_create_conf方法，来创建对应的conf，
     //然后将这个conf对象保存在全局的conf_ctx中
     for (i = 0; ngx_modules[i]; i++) {
+        //这里只对核心模块进行处理，核心模块就是ngx_core_module，ngx_errlog_module，ngx_events_module和ngx_http_module，
+        //实际上只有ngx_core_module_create_conf
         if (ngx_modules[i]->type != NGX_CORE_MODULE) {
-            continue; //这里只对核心模块进行处理，核心模块就是ngx_core_module，ngx_errlog_module，ngx_events_module和ngx_http_module，实际上只有ngx_core_module_create_conf
+            continue;
         }
 
         //得到core modules
@@ -243,6 +244,7 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
 
     //对指令结构进行初始化:参数，内存池
     ngx_memzero(&conf, sizeof(ngx_conf_t));
+
     /* STUB: init array ? */
     conf.args = ngx_array_create(pool, 10, sizeof(ngx_str_t));
     if (conf.args == NULL) {
@@ -289,7 +291,11 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
     }
 
     //当配置文件解析完毕后，就初始化core module的config
+    //调用核心模块的配置init函数， cycle->conf_ctx 中对应的指针指向创建的配置
+    //初始化所有core module的configure.它通过调用每个core module的ngx_xxx_module_init_conf方法，来初始化对应的conf，
     for (i = 0; ngx_modules[i]; i++) {
+        //这里只对核心模块进行处理，核心模块就是ngx_core_module，ngx_errlog_module，ngx_events_module和ngx_http_module，
+        //实际上只有ngx_core_module_init_conf
         if (ngx_modules[i]->type != NGX_CORE_MODULE) {
             continue;
         }
@@ -298,8 +304,7 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
 
         //调用ngx_xxx_module_init_conf
         if (module->init_conf) {
-            if (module->init_conf(cycle, cycle->conf_ctx[ngx_modules[i]->index])
-                == NGX_CONF_ERROR)
+            if (module->init_conf(cycle, cycle->conf_ctx[ngx_modules[i]->index]) == NGX_CONF_ERROR)
             {
                 environ = senv;
                 ngx_destroy_cycle_pools(&conf);

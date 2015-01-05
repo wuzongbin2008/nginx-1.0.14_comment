@@ -164,11 +164,13 @@ ngx_conf_parse(ngx_conf_t *cf, ngx_str_t *filename)
 
         type = parse_file;
 
-    } else if (cf->conf_file->file.fd != NGX_INVALID_FILE) {
+    }
+    else if (cf->conf_file->file.fd != NGX_INVALID_FILE) {
 
         type = parse_block;
 
-    } else {
+    }
+    else {
         type = parse_param;
     }
 
@@ -468,6 +470,7 @@ ngx_conf_read_token(ngx_conf_t *cf)
     start_line = cf->conf_file->line;
 
     file_size = ngx_file_size(&cf->conf_file->file.info);
+
     // 循环解析配置文件，逐字符
     for ( ;; ) {
 
@@ -556,6 +559,7 @@ ngx_conf_read_token(ngx_conf_t *cf)
                 sharp_comment = 0;
             }
         }
+
         //注释行的话，跳过
         if (sharp_comment) {
             continue;
