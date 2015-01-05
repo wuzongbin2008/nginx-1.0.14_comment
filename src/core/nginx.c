@@ -911,10 +911,7 @@ ngx_process_options(ngx_cycle_t *cycle)
         return NGX_ERROR;
     }
 
-    for (p = cycle->conf_file.data + cycle->conf_file.len - 1;
-         p > cycle->conf_file.data;
-         p--)
-    {
+    for (p = cycle->conf_file.data + cycle->conf_file.len - 1; p > cycle->conf_file.data; p--){
         if (ngx_path_separator(*p)) {  // 将config_file路径按照分隔符“/”分割
             cycle->conf_prefix.len = p - ngx_cycle->conf_file.data + 1;
             cycle->conf_prefix.data = ngx_cycle->conf_file.data;

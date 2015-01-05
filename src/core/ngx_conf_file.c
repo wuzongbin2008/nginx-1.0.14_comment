@@ -154,6 +154,7 @@ ngx_conf_parse(ngx_conf_t *cf, ngx_str_t *filename)
         buf.last = buf.start;
         buf.end = buf.last + NGX_CONF_BUFFER;
         buf.temporary = 1;
+
         // 保存配置文件的基本信息
         cf->conf_file->file.fd = fd;
         cf->conf_file->file.name.len = filename->len;
@@ -166,9 +167,7 @@ ngx_conf_parse(ngx_conf_t *cf, ngx_str_t *filename)
 
     }
     else if (cf->conf_file->file.fd != NGX_INVALID_FILE) {
-
         type = parse_block;
-
     }
     else {
         type = parse_param;
@@ -298,12 +297,12 @@ ngx_conf_handler(ngx_conf_t *cf, ngx_int_t last)
     name = cf->args->elts;
 
     multi = 0;
+
     // 遍历每个模块，检查token（就是上面的name，比如这里的name可能是worker_process）是在哪个模块中被定义，并且进行处理
     for (i = 0; ngx_modules[i]; i++) {
 
         /* look up the directive in the appropriate modules */
-        if (ngx_modules[i]->type != NGX_CONF_MODULE
-            && ngx_modules[i]->type != cf->module_type)
+        if (ngx_modules[i]->type != NGX_CONF_MODULE && ngx_modules[i]->type != cf->module_type)
         {
             continue;
         }
@@ -402,7 +401,8 @@ ngx_conf_handler(ngx_conf_t *cf, ngx_int_t last)
                 }
             }
 
-            //调用对应命令的处理函数，比如worker_process这命令在nginx.c中对应的处理函数是ngx_conf_set_num_slot，这里的set就是ngx_conf_set_num_slot
+            //调用对应命令的处理函数，比如worker_process这命令在nginx.c中
+            //对应的处理函数是ngx_conf_set_num_slot，这里的set就是ngx_conf_set_num_slot
             rv = cmd->set(cf, cmd, conf);
 
             if (rv == NGX_CONF_OK) {
