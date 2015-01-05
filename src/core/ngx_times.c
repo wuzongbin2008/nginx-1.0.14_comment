@@ -88,6 +88,7 @@ ngx_time_update(void)
 
     sec = tv.tv_sec;
     msec = tv.tv_usec / 1000;   //从微秒usec中计算毫秒msec
+
     // 获取毫妙精度的时间，可以看出nginx精确到毫秒
     ngx_current_msec = (ngx_msec_t) sec * 1000 + msec;
 
@@ -98,12 +99,14 @@ ngx_time_update(void)
         ngx_unlock(&ngx_time_lock);
         return;
     }
+
     // 当cached_time数组保存的时间达到NGX_TIME_SLOTS上限的时候，从新开始把时间保存下来
     if (slot == NGX_TIME_SLOTS - 1) {
         slot = 0;
     } else {
         slot++;
     }
+
     // 每调用ngx_time_update（）一次，保存一次时间
     tp = &cached_time[slot];
 
@@ -156,6 +159,7 @@ ngx_time_update(void)
                        tm.ngx_tm_min, tm.ngx_tm_sec,
                        tp->gmtoff < 0 ? '-' : '+',
                        ngx_abs(tp->gmtoff / 60), ngx_abs(tp->gmtoff % 60));
+
     // P3存储诸如“2012-07-27T09:09:17+08:00”
     p3 = &cached_http_log_iso8601[slot][0];
 
@@ -168,12 +172,13 @@ ngx_time_update(void)
 
 
     ngx_memory_barrier();
+
     // 调用nginx_time_update()目的就是更新这几个时间变量
     ngx_cached_time = tp;
     ngx_cached_http_time.data = p0;
     ngx_cached_err_log_time.data = p1;  //error log中使用的时间，如“2012/07/07 18:56:16 [error] 28451#0: *8941 open() ”
     ngx_cached_http_log_time.data = p2;  //access log 中使用的时间，如“192.168.100.251 - - [07/Jul/2012:18:56:17 +0800] "GET /rails_”
-    ngx_cached_http_log_iso8601.data = p3;  
+    ngx_cached_http_log_iso8601.data = p3;
 
     ngx_unlock(&ngx_time_lock); // 解锁，这里对nginx的时间进行更新使用了ngx_time_lock锁。
 }

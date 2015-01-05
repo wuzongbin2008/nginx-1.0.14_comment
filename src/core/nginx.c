@@ -973,8 +973,7 @@ ngx_core_module_create_conf(ngx_cycle_t *cycle)  // 这是core模块对外的create_con
     ccf->thread_stack_size = NGX_CONF_UNSET_SIZE;
 #endif
 
-    if (ngx_array_init(&ccf->env, cycle->pool, 1, sizeof(ngx_str_t))
-        != NGX_OK)
+    if (ngx_array_init(&ccf->env, cycle->pool, 1, sizeof(ngx_str_t)) != NGX_OK)
     {
         return NULL;
     }

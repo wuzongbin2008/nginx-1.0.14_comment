@@ -61,7 +61,6 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
     ngx_timezone_update();
 
     /* force localtime update with a new timezone */
-
     tp = ngx_timeofday();  // 这个宏就是取出之前的ngx_cache_time
     tp->sec = 0;
 
@@ -111,8 +110,7 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
         ngx_destroy_pool(pool);
         return NULL;
     }
-    ngx_cpystrn(cycle->conf_file.data, old_cycle->conf_file.data,
-                old_cycle->conf_file.len + 1);
+    ngx_cpystrn(cycle->conf_file.data, old_cycle->conf_file.data, old_cycle->conf_file.len + 1);
 
     //配置参数设定
     cycle->conf_param.len = old_cycle->conf_param.len;
@@ -149,8 +147,7 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
     }
 
     //根据数量初始化，初始化open_files
-    if (ngx_list_init(&cycle->open_files, pool, n, sizeof(ngx_open_file_t))
-        != NGX_OK)
+    if (ngx_list_init(&cycle->open_files, pool, n, sizeof(ngx_open_file_t)) != NGX_OK)
     {
         ngx_destroy_pool(pool);
         return NULL;
@@ -169,8 +166,7 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
     }
 
     //根据数量初始化，初始化shared_memory
-    if (ngx_list_init(&cycle->shared_memory, pool, n, sizeof(ngx_shm_zone_t))
-        != NGX_OK)
+    if (ngx_list_init(&cycle->shared_memory, pool, n, sizeof(ngx_shm_zone_t)) != NGX_OK)
     {
         ngx_destroy_pool(pool);
         return NULL;
