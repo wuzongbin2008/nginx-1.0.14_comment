@@ -650,7 +650,8 @@ ngx_conf_read_token(ngx_conf_t *cf)
                 last_space = 0;
             }
 
-        } else {
+        }
+        else {
             if (ch == '{' && variable) {
                 continue;
             }
@@ -674,14 +675,16 @@ ngx_conf_read_token(ngx_conf_t *cf)
                     found = 1;
                 }
 
-            } else if (s_quoted) {
+            }
+            else if (s_quoted) {
                 if (ch == '\'') {
                     s_quoted = 0;
                     need_space = 1;
                     found = 1;
                 }
 
-            } else if (ch == ' ' || ch == '\t' || ch == CR || ch == LF
+            }
+            else if (ch == ' ' || ch == '\t' || ch == CR || ch == LF
                        || ch == ';' || ch == '{')
             {
             	//空格、TAB、换行、分号，大括号等

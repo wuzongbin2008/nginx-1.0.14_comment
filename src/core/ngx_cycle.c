@@ -346,7 +346,6 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
         }
     }
 
-
     if (ngx_test_lockfile(cycle->lock_file.data, log) != NGX_OK) {
         goto failed;
     }
@@ -701,7 +700,6 @@ old_shm_zone_done:
 #endif
     }
 
-
     /* close the unnecessary open files */
     part = &old_cycle->open_files.part;
     file = part->elts;
@@ -748,7 +746,6 @@ old_shm_zone_done:
 
         return cycle;
     }
-
 
     if (ngx_temp_pool == NULL) {
         ngx_temp_pool = ngx_create_pool(128, cycle->log);

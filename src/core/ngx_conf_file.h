@@ -79,7 +79,7 @@ struct ngx_command_s {
     ngx_str_t             name;         //配置项名称
 
     //配置项类型(有几个参数或者可以在什么地方出现等)
-    ngx_uint_t            type;         
+    ngx_uint_t            type;
 
     //出现了name中制定的配置项后，将会调用set方法处理配置项参数。
     //这个可以使用nginx预设的14个解析配置方法，也可以使用自定义的。
@@ -92,10 +92,10 @@ struct ngx_command_s {
     NGX_HTTP_LOC_CONF_OFFSET
     */
     //因为有可能模块同时会有main，srv，loc三种配置结构体，但是这个配置项解析完后要放在哪个结构体内呢？
-    ngx_uint_t            conf;     
+    ngx_uint_t            conf;
 
     //表示当前配置项在整个存储配置项的结构体中的偏移位置，
-    //可以使用offsetof(test_stru, b)来获取    
+    //可以使用offsetof(test_stru, b)来获取
     ngx_uint_t            offset;
 
     //命令处理完后的回调指针，对于set的14种预设的解析配置方法， 可能的结构有：
@@ -130,7 +130,7 @@ struct ngx_open_file_s {
 
 //参考：
 //http://blog.csdn.net/livelylittlefish/article/details/6571497
-#define NGX_MODULE_V1          0, 0, 0, 0, 0, 0, 1      //该宏用来初始化前7个字段  
+#define NGX_MODULE_V1          0, 0, 0, 0, 0, 0, 1      //该宏用来初始化前7个字段
 #define NGX_MODULE_V1_PADDING  0, 0, 0, 0, 0, 0, 0, 0   //该宏用来初始化最后8个字段
 
 //ngx_module_s是模块的定义
@@ -141,7 +141,7 @@ struct ngx_module_s {
     ngx_uint_t            ctx_index;
 
     //index表示当前模块在ngx_modules数组中的序号。Nginx启动的时候会根据ngx_modules数组设置各个模块的index值
-    ngx_uint_t            index; 
+    ngx_uint_t            index;
 
     //spare系列的保留变量，暂未使用
     ngx_uint_t            spare0;
@@ -200,8 +200,7 @@ typedef struct {
 } ngx_conf_file_t;
 
 
-typedef char *(*ngx_conf_handler_pt)(ngx_conf_t *cf,
-    ngx_command_t *dummy, void *conf);
+typedef char *(*ngx_conf_handler_pt)(ngx_conf_t *cf, ngx_command_t *dummy, void *conf);
 
 
 struct ngx_conf_s {
