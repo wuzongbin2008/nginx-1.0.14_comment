@@ -523,13 +523,12 @@ ngx_conf_read_token(ngx_conf_t *cf)
             }
 
             size = (ssize_t) (file_size - cf->conf_file->file.offset);
-
             if (size > b->end - (b->start + len)) {
                 size = b->end - (b->start + len);
             }
+
             //读出配置文件内容到缓冲区b中
             n = ngx_read_file(&cf->conf_file->file, b->start + len, size, cf->conf_file->file.offset);
-
             if (n == NGX_ERROR) {
                 return NGX_ERROR;
             }

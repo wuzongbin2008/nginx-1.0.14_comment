@@ -12,8 +12,7 @@
 
 static void ngx_destroy_cycle_pools(ngx_conf_t *conf);
 static ngx_int_t ngx_cmp_sockaddr(struct sockaddr *sa1, struct sockaddr *sa2);
-static ngx_int_t ngx_init_zone_pool(ngx_cycle_t *cycle,
-    ngx_shm_zone_t *shm_zone);
+static ngx_int_t ngx_init_zone_pool(ngx_cycle_t *cycle, ngx_shm_zone_t *shm_zone);
 static ngx_int_t ngx_test_lockfile(u_char *file, ngx_log_t *log);
 static void ngx_clean_old_cycles(ngx_event_t *ev);
 
@@ -47,7 +46,7 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
     ngx_uint_t           i, n;
     ngx_log_t           *log;
     ngx_time_t          *tp;
-    ngx_conf_t           conf;//与nginx.conf配置文件相关的一个变量，配置文件的解析都是围绕这个变量进行
+    ngx_conf_t           conf; //与nginx.conf配置文件相关的一个变量，配置文件的解析都是围绕这个变量进行
     ngx_pool_t          *pool;
     ngx_cycle_t         *cycle, **old;
     ngx_shm_zone_t      *shm_zone, *oshm_zone;

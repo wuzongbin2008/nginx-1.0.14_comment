@@ -242,8 +242,7 @@ ngx_http_static_handler(ngx_http_request_t *r)
 
     path.len = last - path.data;
 
-    ngx_log_debug1(NGX_LOG_DEBUG_HTTP, log, 0,
-                   "http filename: \"%s\"", path.data);
+    ngx_log_debug1(NGX_LOG_DEBUG_HTTP, log, 0, "http filename: \"%s\"", path.data);
 
     clcf = ngx_http_get_module_loc_conf(r, ngx_http_core_module);
 
@@ -256,8 +255,7 @@ ngx_http_static_handler(ngx_http_request_t *r)
     of.errors = clcf->open_file_cache_errors;
     of.events = clcf->open_file_cache_events;
 
-    if (ngx_open_cached_file(clcf->open_file_cache, &path, &of, r->pool)
-        != NGX_OK)
+    if (ngx_open_cached_file(clcf->open_file_cache, &path, &of, r->pool) != NGX_OK)
     {
         switch (of.err) {
 
