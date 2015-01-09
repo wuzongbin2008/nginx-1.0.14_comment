@@ -69,8 +69,7 @@ ngx_array_push(ngx_array_t *a)
 
         p = a->pool;
 
-        if ((u_char *) a->elts + size == p->d.last
-            && p->d.last + a->size <= p->d.end)
+        if ((u_char *) a->elts + size == p->d.last && p->d.last + a->size <= p->d.end)
         {
             /*
              * the array allocation is the last in the pool
@@ -80,7 +79,8 @@ ngx_array_push(ngx_array_t *a)
             p->d.last += a->size;
             a->nalloc++;
 
-        } else {
+        }
+        else {
             /* allocate a new array */
 
             new = ngx_palloc(p, 2 * size);

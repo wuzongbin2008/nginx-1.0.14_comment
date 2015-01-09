@@ -47,7 +47,6 @@ ngx_module_t  ngx_conf_module = {
 
 
 /* The eight fixed arguments */
-
 static ngx_uint_t argument_number[] = {
     NGX_CONF_NOARGS,
     NGX_CONF_TAKE1,
@@ -502,10 +501,12 @@ ngx_conf_read_token(ngx_conf_t *cf)
                 if (d_quoted) {
                     ch = '"';
 
-                } else if (s_quoted) {
+                }
+                else if (s_quoted) {
                     ch = '\'';
 
-                } else {
+                }
+                else {
                     ngx_conf_log_error(NGX_LOG_EMERG, cf, 0,
                                        "too long parameter \"%*s...\" started",
                                        10, start);
@@ -585,7 +586,8 @@ ngx_conf_read_token(ngx_conf_t *cf)
                 last_space = 1;
                 need_space = 0;
 
-            } else {
+            }
+            else {
                  ngx_conf_log_error(NGX_LOG_EMERG, cf, 0,
                                     "unexpected \"%c\"", ch);
                  return NGX_ERROR;
@@ -684,8 +686,7 @@ ngx_conf_read_token(ngx_conf_t *cf)
                 }
 
             }
-            else if (ch == ' ' || ch == '\t' || ch == CR || ch == LF
-                       || ch == ';' || ch == '{')
+            else if (ch == ' ' || ch == '\t' || ch == CR || ch == LF || ch == ';' || ch == '{')
             {
             	//空格、TAB、换行、分号，大括号等
                 last_space = 1;
@@ -706,9 +707,7 @@ ngx_conf_read_token(ngx_conf_t *cf)
 				//没有直接拷贝，而是逐个字符读入，并做了转义字符的解析
 				//在程序启动阶段做的，性能不是最最重要的，而是配置文件的灵活性
 				//解析完命令后，会在字符串结尾加'\0'结尾符
-                for (dst = word->data, src = start, len = 0;
-                     src < b->pos - 1;
-                     len++)
+                for (dst = word->data, src = start, len = 0; src < b->pos - 1; len++)
                 {
                     if (*src == '\\') {
                         switch (src[1]) {
