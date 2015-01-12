@@ -300,7 +300,10 @@ ngx_conf_handler(ngx_conf_t *cf, ngx_int_t last)
     // 遍历每个模块，检查token（就是上面的name，比如这里的name可能是worker_process）是在哪个模块中被定义，并且进行处理
     for (i = 0; ngx_modules[i]; i++) {
 
-        /* look up the directive in the appropriate modules */
+        /*
+        * look up the directive in the appropriate modules
+        * 处理核心模块（NGX_CORE_MODULE) and 配置模块（NGX_CONF_MODULE）
+        */
         if (ngx_modules[i]->type != NGX_CONF_MODULE && ngx_modules[i]->type != cf->module_type)
         {
             continue;
@@ -421,6 +424,7 @@ ngx_conf_handler(ngx_conf_t *cf, ngx_int_t last)
 
             return NGX_ERROR;
         }
+
     }
 
     if (multi == 0) {

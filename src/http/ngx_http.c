@@ -155,8 +155,7 @@ ngx_http_block(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
 
     //开始初始化，可以看到默认会分配max个config
     //创建HTTP对应的conf，因为每个级别(main/ser/loc)都会包含模块的conf
-    ctx->main_conf = ngx_pcalloc(cf->pool,
-                                 sizeof(void *) * ngx_http_max_module);
+    ctx->main_conf = ngx_pcalloc(cf->pool, sizeof(void *) * ngx_http_max_module);
     if (ctx->main_conf == NULL) {
         return NGX_CONF_ERROR;
     }

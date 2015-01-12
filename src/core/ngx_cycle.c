@@ -262,7 +262,7 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
     conf.cycle = cycle;
     conf.pool = pool;
     conf.log = log;
-    conf.module_type = NGX_CORE_MODULE;//注意，一开始命令的类型就是MAIN，并且模块类型是core。
+    conf.module_type = NGX_CORE_MODULE; //注意，一开始命令的类型就是MAIN，并且模块类型是core。
     conf.cmd_type = NGX_MAIN_CONF;
 
 #if 0
