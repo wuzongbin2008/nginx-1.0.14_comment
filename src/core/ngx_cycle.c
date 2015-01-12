@@ -607,6 +607,9 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
     pool->log = cycle->log;
 
     //调用init_module对所有的模块进行初始化，调用所有模块的ngx_XXX_module_init钩子，比如ngx_event_module_init
+    /*
+        ngx_event_core_module->ngx_event_module_init
+    */
     for (i = 0; ngx_modules[i]; i++) {
         if (ngx_modules[i]->init_module) {
             if (ngx_modules[i]->init_module(cycle) != NGX_OK) {

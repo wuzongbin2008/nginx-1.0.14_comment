@@ -11,10 +11,8 @@
 #include <ngx_channel.h>
 
 
-static void ngx_start_worker_processes(ngx_cycle_t *cycle, ngx_int_t n,
-    ngx_int_t type);
-static void ngx_start_cache_manager_processes(ngx_cycle_t *cycle,
-    ngx_uint_t respawn);
+static void ngx_start_worker_processes(ngx_cycle_t *cycle, ngx_int_t n, ngx_int_t type);
+static void ngx_start_cache_manager_processes(ngx_cycle_t *cycle, ngx_uint_t respawn);
 static void ngx_pass_open_channel(ngx_cycle_t *cycle, ngx_channel_t *ch);
 static void ngx_signal_worker_processes(ngx_cycle_t *cycle, int signo);
 static ngx_uint_t ngx_reap_children(ngx_cycle_t *cycle);
@@ -177,8 +175,7 @@ ngx_master_process_cycle(ngx_cycle_t *cycle)
 
         ngx_time_update();
 
-        ngx_log_debug1(NGX_LOG_DEBUG_EVENT, cycle->log, 0,
-                       "wake up, sigio %i", sigio);
+        ngx_log_debug1(NGX_LOG_DEBUG_EVENT, cycle->log, 0, "wake up, sigio %i", sigio);
 
         //ngx_reap为1，说明有子进程已经退出
         if (ngx_reap) {
@@ -384,8 +381,7 @@ ngx_start_worker_processes(ngx_cycle_t *cycle, ngx_int_t n, ngx_int_t type)
         cpu_affinity = ngx_get_cpu_affinity(i);
 
         //fork新进程的具体工作
-        ngx_spawn_process(cycle, ngx_worker_process_cycle, NULL,
-                          "worker process", type);
+        ngx_spawn_process(cycle, ngx_worker_process_cycle, NULL, "worker process", type);
 
         //全局数组,定义在src/os/unix/ngx_process.c文件中，存储元素类型是ngx_process_t。
         //注意，ngx_process_slot在spawn函数中已经赋值完毕，就是当前子进程的位置

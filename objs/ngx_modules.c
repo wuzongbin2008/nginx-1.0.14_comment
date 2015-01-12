@@ -39,7 +39,7 @@ ngx_module_t *ngx_modules[] = {
     &ngx_errlog_module,          //NGX_CORE_MODULE
     &ngx_conf_module,                                   //NGX_CONF_MODULE
     &ngx_events_module,         //NGX_CORE_MODULE
-    &ngx_event_core_module,                             //NGX_EVENT_MODULE
+    &ngx_event_core_module,                             //NGX_EVENT_MODULE init_module init process
     &ngx_epoll_module,                                   //NGX_EVENT_MODULE
     &ngx_http_module,            //NGX_CORE_MODULE
     &ngx_http_core_module,                               //NGX_HTTP_MODULE

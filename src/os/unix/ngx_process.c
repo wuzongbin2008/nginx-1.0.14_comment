@@ -19,7 +19,6 @@ typedef struct {
 } ngx_signal_t;
 
 
-
 static void ngx_execute_proc(ngx_cycle_t *cycle, void *data);
 static void ngx_signal_handler(int signo);
 static void ngx_process_get_status(void);
@@ -128,7 +127,7 @@ ngx_spawn_process(ngx_cycle_t *cycle, ngx_spawn_proc_pt proc, void *data,
                        "channel %d:%d",
                        ngx_processes[s].channel[0],
                        ngx_processes[s].channel[1]);
-        
+
         //设置非阻塞模式
         if (ngx_nonblocking(ngx_processes[s].channel[0]) == -1) {
             ngx_log_error(NGX_LOG_ALERT, cycle->log, ngx_errno,
@@ -323,7 +322,7 @@ ngx_signal_handler(int signo)
     ignore = 0;
 
     err = ngx_errno;
-    
+
     //得到当前的信号
     for (sig = signals; sig->signo != 0; sig++) {
         if (sig->signo == signo) {
@@ -363,7 +362,7 @@ ngx_signal_handler(int signo)
             }
             break;
 
-        //sighup信号用来reconfig 
+        //sighup信号用来reconfig
         case ngx_signal_value(NGX_RECONFIGURE_SIGNAL):
             ngx_reconfigure = 1;
             action = ", reconfiguring";
@@ -385,11 +384,11 @@ ngx_signal_handler(int signo)
                  * is still running.  Or ignore the signal in the old binary's
                  * process if the new binary's process is already running.
                  */
-                /* 这里给出了详细的注释，更通俗一点来讲，就是说，进程现在是一个 
-                * master(新的master进程)，但是当他的父进程old master还在运行的话， 
-                * 这时收到了USR2信号，我们就忽略它，不然就成了新master里又要生成 
-                * master。。。另外一种情况就是，old master已经开始了生成新master的过程 
-                * 中，这时如果又有USR2信号到来，那么也要忽略掉。。。(不知道够不够通俗=.=) 
+                /* 这里给出了详细的注释，更通俗一点来讲，就是说，进程现在是一个
+                * master(新的master进程)，但是当他的父进程old master还在运行的话，
+                * 这时收到了USR2信号，我们就忽略它，不然就成了新master里又要生成
+                * master。。。另外一种情况就是，old master已经开始了生成新master的过程
+                * 中，这时如果又有USR2信号到来，那么也要忽略掉。。。(不知道够不够通俗=.=)
                 参考文档：http://blog.csdn.net/dingyujie/article/details/7192144
                 */
                 action = ", ignoring";

@@ -357,23 +357,27 @@ ngx_conf_handler(ngx_conf_t *cf, ngx_int_t last)
                         goto invalid;
                     }
 
-                } else if (cmd->type & NGX_CONF_1MORE) {
+                }
+                else if (cmd->type & NGX_CONF_1MORE) {
 
                     if (cf->args->nelts < 2) {
                         goto invalid;
                     }
 
-                } else if (cmd->type & NGX_CONF_2MORE) {
+                }
+                else if (cmd->type & NGX_CONF_2MORE) {
 
                     if (cf->args->nelts < 3) {
                         goto invalid;
                     }
 
-                } else if (cf->args->nelts > NGX_CONF_MAX_ARGS) {
+                }
+                else if (cf->args->nelts > NGX_CONF_MAX_ARGS) {
 
                     goto invalid;
 
-                } else if (!(cmd->type & argument_number[cf->args->nelts - 1])){
+                }
+                else if (!(cmd->type & argument_number[cf->args->nelts - 1])){
                     goto invalid;
                 }
             }
@@ -386,11 +390,13 @@ ngx_conf_handler(ngx_conf_t *cf, ngx_int_t last)
 				//我们还记得最开始ctx是包含了所有core模块的conf(create_conf回调),因此这里取出对应的模块conf.
                 conf = ((void **) cf->ctx)[ngx_modules[i]->index];
 
-            } else if (cmd->type & NGX_MAIN_CONF) {
+            }
+            else if (cmd->type & NGX_MAIN_CONF) {
             	//如果不是DIRECT_CONF并且是MAIN，则说明我们需要在配置中创建自己模块的上下文(也就是需要进入二级模块)
                 conf = &(((void **) cf->ctx)[ngx_modules[i]->index]);
 
-            } else if (cf->ctx) {
+            }
+            else if (cf->ctx) {
             	//否则进入二级模块处理
                 confp = *(void **) ((char *) cf->ctx + cmd->conf);
 
@@ -543,7 +549,7 @@ ngx_conf_read_token(ngx_conf_t *cf)
             }
 
             b->pos = b->start + len;
-            b->last = b->pos + n;
+            b->last = b->pos + n; //本次读取字节数加上之前读取的字节数
             start = b->start;
         }
 
@@ -1022,8 +1028,7 @@ ngx_conf_flush_files(ngx_cycle_t *cycle)
 
 
 void ngx_cdecl
-ngx_conf_log_error(ngx_uint_t level, ngx_conf_t *cf, ngx_err_t err,
-    const char *fmt, ...)
+ngx_conf_log_error(ngx_uint_t level, ngx_conf_t *cf, ngx_err_t err, const char *fmt, ...)
 {
     u_char   errstr[NGX_MAX_CONF_ERRSTR], *p, *last;
     va_list  args;
