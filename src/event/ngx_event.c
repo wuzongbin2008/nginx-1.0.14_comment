@@ -25,11 +25,9 @@ static ngx_int_t ngx_event_module_init(ngx_cycle_t *cycle);
 static ngx_int_t ngx_event_process_init(ngx_cycle_t *cycle);
 static char *ngx_events_block(ngx_conf_t *cf, ngx_command_t *cmd, void *conf);
 
-static char *ngx_event_connections(ngx_conf_t *cf, ngx_command_t *cmd,
-    void *conf);
+static char *ngx_event_connections(ngx_conf_t *cf, ngx_command_t *cmd, void *conf);
 static char *ngx_event_use(ngx_conf_t *cf, ngx_command_t *cmd, void *conf);
-static char *ngx_event_debug_connection(ngx_conf_t *cf, ngx_command_t *cmd,
-    void *conf);
+static char *ngx_event_debug_connection(ngx_conf_t *cf, ngx_command_t *cmd, void *conf);
 
 static void *ngx_event_create_conf(ngx_cycle_t *cycle);
 static char *ngx_event_init_conf(ngx_cycle_t *cycle, void *conf);
@@ -433,6 +431,7 @@ ngx_event_module_init(ngx_cycle_t *cycle)
     ngx_time_t          *tp;
     ngx_core_conf_t     *ccf;
     ngx_event_conf_t    *ecf;
+
     // 获取使用的事件模块，如IOCP，epool
     cf = ngx_get_conf(cycle->conf_ctx, ngx_events_module);
 
@@ -441,6 +440,7 @@ ngx_event_module_init(ngx_cycle_t *cycle)
                       "no \"events\" section in configuration");
         return NGX_ERROR;
     }
+
     // 获取使用的事件模块ngx_event_core_module的配置
     ecf = (*cf)[ngx_event_core_module.ctx_index];
 
@@ -448,8 +448,10 @@ ngx_event_module_init(ngx_cycle_t *cycle)
         ngx_log_error(NGX_LOG_NOTICE, cycle->log, 0,
                       "using the \"%s\" event method", ecf->name);
     }
+
     // 获取ngx_core_module模块的配置
     ccf = (ngx_core_conf_t *) ngx_get_conf(cycle->conf_ctx, ngx_core_module);
+
     // 设置时间精度
     ngx_timer_resolution = ccf->timer_resolution;
 
@@ -483,7 +485,7 @@ ngx_event_module_init(ngx_cycle_t *cycle)
     if (ccf->master == 0) {
         return NGX_OK;
     }
-    
+
     if (ngx_accept_mutex_ptr) {  // 已经存在accept互斥体了，不需要再重复创建
         return NGX_OK;
     }
@@ -512,21 +514,25 @@ ngx_event_module_init(ngx_cycle_t *cycle)
     shm.name.len = sizeof("nginx_shared_zone");
     shm.name.data = (u_char *) "nginx_shared_zone";
     shm.log = cycle->log;
+
     // 创建共享内存，共享内存的起始地址保存在shm.addr
     if (ngx_shm_alloc(&shm) != NGX_OK) {
         return NGX_ERROR;
     }
+
     // 获得共享内存的起始地址
     shared = shm.addr;
+
     // accept互斥体取得共享内存的第一段cl大小内存
     ngx_accept_mutex_ptr = (ngx_atomic_t *) shared;
     ngx_accept_mutex.spin = (ngx_uint_t) -1;
+
     // 系统支持原子数据则使用原子数据实现accept mutex，否则使用文件上锁实现
-    if (ngx_shmtx_create(&ngx_accept_mutex, shared, cycle->lock_file.data)
-        != NGX_OK)
+    if (ngx_shmtx_create(&ngx_accept_mutex, shared, cycle->lock_file.data) != NGX_OK)
     {
         return NGX_ERROR;
     }
+
     // ngx_connection_counter指到共享内存那
     ngx_connection_counter = (ngx_atomic_t *) (shared + 1 * cl);
 
@@ -539,6 +545,7 @@ ngx_event_module_init(ngx_cycle_t *cycle)
     ngx_temp_number = (ngx_atomic_t *) (shared + 2 * cl);
 
     tp = ngx_timeofday();
+
     //根据当前时间和进程ID，获取一个随机数
     ngx_random_number = (tp->msec << 16) + ngx_pid;
 
@@ -620,7 +627,7 @@ ngx_event_process_init(ngx_cycle_t *cycle)
         }
 
         module = ngx_modules[m]->ctx;
-        
+
         //初始化模块
         if (module->actions.init(cycle, ngx_timer_resolution) != NGX_OK) {
             /* fatal */
@@ -685,7 +692,7 @@ ngx_event_process_init(ngx_cycle_t *cycle)
     }
 
     c = cycle->connections;
-    
+
     //创建所有读事件
     cycle->read_events = ngx_alloc(sizeof(ngx_event_t) * cycle->connection_n,
                                    cycle->log);
@@ -697,7 +704,7 @@ ngx_event_process_init(ngx_cycle_t *cycle)
     //初始化读事件
     for (i = 0; i < cycle->connection_n; i++) {
         rev[i].closed = 1;
-        //防止stale event 
+        //防止stale event
         rev[i].instance = 1;
 #if (NGX_THREADS)
         rev[i].lock = &c[i].lock;
@@ -728,7 +735,7 @@ ngx_event_process_init(ngx_cycle_t *cycle)
     //初始化连接池
     do {
         i--;
-        
+
         //链表
         c[i].data = next;
         //每一个连接的读写事件对应cycle的读写事件
@@ -743,7 +750,7 @@ ngx_event_process_init(ngx_cycle_t *cycle)
 #endif
     } while (i);
 
-    //设置free 连接 
+    //设置free 连接
     cycle->free_connections = next;
     cycle->free_connection_n = cycle->connection_n;
 
@@ -751,9 +758,9 @@ ngx_event_process_init(ngx_cycle_t *cycle)
     //下面这段初始化listen 事件 ，创建socket句柄，绑定事件回调，然后加入到事件驱动中
 
     ls = cycle->listening.elts;  // 为每一个监听套接字从connection数组中分配一个连接，即一个slot
-    //开始遍历listen 
+    //开始遍历listen
     for (i = 0; i < cycle->listening.nelts; i++) {
-        
+
         //从连接池取得连接
         c = ngx_get_connection(ls[i].fd, cycle->log);
 
@@ -832,8 +839,8 @@ ngx_event_process_init(ngx_cycle_t *cycle)
         }
 
 #else
-        
-        //设置listen句柄的事件回调，这个回调里面会accept，然后进行后续处理，这个函数是nginx事件驱动的第一个函数 
+
+        //设置listen句柄的事件回调，这个回调里面会accept，然后进行后续处理，这个函数是nginx事件驱动的第一个函数
         rev->handler = ngx_event_accept;
 
         //如果默认使用mutex，则会继续下面操作
