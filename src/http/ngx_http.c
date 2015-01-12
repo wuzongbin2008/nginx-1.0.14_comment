@@ -145,15 +145,15 @@ ngx_http_block(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
         if (ngx_modules[m]->type != NGX_HTTP_MODULE) {
             continue;
         }
-        
+
         //每个模块都有自己对应的索引值
         ngx_modules[m]->ctx_index = ngx_http_max_module++;
     }
 
     //下面是创建http module的对应的main,srv,loc config
     /* the http main_conf context, it is the same in the all http contexts */
-    
-    //开始初始化，可以看到默认会分配max个config 
+
+    //开始初始化，可以看到默认会分配max个config
     //创建HTTP对应的conf，因为每个级别(main/ser/loc)都会包含模块的conf
     ctx->main_conf = ngx_pcalloc(cf->pool,
                                  sizeof(void *) * ngx_http_max_module);
@@ -195,12 +195,13 @@ ngx_http_block(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
         if (ngx_modules[m]->type != NGX_HTTP_MODULE) {
             continue;
         }
-        
+
         //得到对应的module上下文
         module = ngx_modules[m]->ctx;
-        //得到对应的索引 
+
+        //得到对应的索引
         mi = ngx_modules[m]->ctx_index;
-        
+
         //如果有对应的回调，则调用回调函数，然后将返回的模块config设置到ctx的对应的conf列表中
         if (module->create_main_conf) {
             ctx->main_conf[mi] = module->create_main_conf(cf);
@@ -226,6 +227,7 @@ ngx_http_block(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
 
 	//保存当前使用的cf，因为我们只是在解析HTTP时需要改变当前的cf
     pcf = *cf;
+
 	//保存当前模块的上下文
     cf->ctx = ctx;
 
@@ -235,7 +237,7 @@ ngx_http_block(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
         }
 
         module = ngx_modules[m]->ctx;
-        
+
         //如果存在postconfiguratio则调用初始化,真正初始化模块之前需要调用preconfiguration来进行一些操作。
         if (module->preconfiguration) {
             if (module->preconfiguration(cf) != NGX_OK) {
@@ -249,6 +251,7 @@ ngx_http_block(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
 	//设置模块类型和命令类型
     cf->module_type = NGX_HTTP_MODULE;
     cf->cmd_type = NGX_HTTP_MAIN_CONF;
+
     //继续parse config,这里注意传递进去的文件名是空
     rv = ngx_conf_parse(cf, NULL);
 
@@ -307,7 +310,7 @@ ngx_http_block(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
         }
     }
 
-    //初始化handler phase 
+    //初始化handler phase
     if (ngx_http_init_phases(cf, cmcf) != NGX_OK) {
         return NGX_CONF_ERROR;
     }
@@ -323,7 +326,7 @@ ngx_http_block(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
         }
 
         module = ngx_modules[m]->ctx;
-        
+
         //调用回调
         if (module->postconfiguration) {
             if (module->postconfiguration(cf) != NGX_OK) {
@@ -331,7 +334,7 @@ ngx_http_block(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
             }
         }
     }
-    
+
     //开始初始化变量
     if (ngx_http_variables_init_vars(cf) != NGX_OK) {
         return NGX_CONF_ERROR;
@@ -594,7 +597,7 @@ ngx_http_merge_servers(ngx_conf_t *cf, ngx_http_core_main_conf_t *cmcf,
     ctx = (ngx_http_conf_ctx_t *) cf->ctx;
     saved = *ctx;
     rv = NGX_CONF_OK;
-    
+
     //遍历所有的server，然后判断模块是否有merge回调函数，如果有的话，就调用回调函数
     for (s = 0; s < cmcf->servers.nelts; s++) {
 
@@ -1456,7 +1459,7 @@ ngx_http_optimize_servers(ngx_conf_t *cf, ngx_http_core_main_conf_t *cmcf,
                 }
             }
         }
-        //初始化listen结构 
+        //初始化listen结构
         if (ngx_http_init_listening(cf, &port[p]) != NGX_OK) {
             return NGX_ERROR;
         }
@@ -1697,7 +1700,7 @@ ngx_http_init_listening(ngx_conf_t *cf, ngx_http_conf_port_t *port)
             i++;
             continue;
         }
-        
+
         //这个函数里面将会创建，并且初始化listen结构
         ls = ngx_http_add_listening(cf, &addr[i]);
         if (ls == NULL) {
@@ -1784,7 +1787,7 @@ ngx_http_add_listening(ngx_conf_t *cf, ngx_http_conf_addr_t *addr)
     }
     }
 #endif
-    
+
     //设置对应的属性,backlog,读写buf
     ls->backlog = addr->opt.backlog;
     ls->rcvbuf = addr->opt.rcvbuf;
