@@ -805,7 +805,6 @@ ngx_conf_include(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
 
     for ( ;; ) {
         n = ngx_read_glob(&gl, &name);
-
         if (n != NGX_OK) {
             break;
         }
@@ -816,7 +815,6 @@ ngx_conf_include(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
         ngx_log_debug1(NGX_LOG_DEBUG_CORE, cf->log, 0, "include %s", file.data);
 
         rv = ngx_conf_parse(cf, &file);
-
         if (rv != NGX_CONF_OK) {
             break;
         }

@@ -213,7 +213,7 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
 
     ngx_strlow(cycle->hostname.data, (u_char *) hostname, cycle->hostname.len); //将主机名变为消息，所以这里主机名是不分大小写的
 
-    //调用核心模块的配置创建函数， cycle->conf_ctx 中对应的指针指向创建的配置
+    //create_conf：调用核心模块的配置创建函数， cycle->conf_ctx 中对应的指针指向创建的配置
     //创建所有core module的configure.它通过调用每个core module的ngx_xxx_module_create_conf方法，来创建对应的conf，
     //然后将这个conf对象保存在全局的conf_ctx中
     for (i = 0; ngx_modules[i]; i++) {
@@ -289,7 +289,7 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
                        cycle->conf_file.data);
     }
 
-    //当配置文件解析完毕后，就初始化core module的config
+    //init_conf：当配置文件解析完毕后，就初始化core module的config
     //调用核心模块的配置init函数， cycle->conf_ctx 中对应的指针指向创建的配置
     //初始化所有core module的configure.它通过调用每个core module的ngx_xxx_module_init_conf方法，来初始化对应的conf，
     for (i = 0; ngx_modules[i]; i++) {
@@ -354,7 +354,6 @@ ngx_init_cycle(ngx_cycle_t *old_cycle)
     if (ngx_create_pathes(cycle, ccf->user) != NGX_OK) {
         goto failed;
     }
-
 
     if (cycle->new_log.file == NULL) {
         cycle->new_log.file = ngx_conf_open_file(cycle, &error_log);
